@@ -2,10 +2,10 @@ import React from 'react'
 
 function Cover() {
     return (
-        <div className='bg-white m-10 flex flex-col md:flex-row justify-between rounded-md shadow-sm'>
+        <div className='bg-white m-10 p-4 flex flex-col md:flex-row justify-between rounded-md shadow-sm'>
             <img 
                 className='object-contain h-80'
-                src="https://www.pngall.com/wp-content/uploads/2016/05/Pizza-PNG-Picture-1.png" 
+                src="https://thumbs.dreamstime.com/b/pizza-isolated-5656323.jpg" 
                 alt="" 
             />
 
@@ -14,7 +14,7 @@ function Cover() {
                 <p className='text-xl'> <span> 🌶️🌶️🌶️🌶️ </span> Hot as Hell!! </p>
                 <p className='text-lg text-gray-400'>Lorem ipsum dorspiciatis nihil officiis reiciendis ut, rerum saepe quaerat ea nisi facilis excepturi soluta.</p>
                 
-                <button className='px-5 py-4 rounded-md shadow-md w-32 text-xl cursor-default'> Price: <span className='text-pink-600 font-bold'> $15 </span> </button>
+                <button className='w-48 px-5 py-4 rounded-md shadow-md text-xl cursor-default'> Price: <span className='text-pink-600 font-bold'> ₹255 </span> </button>
 
             </div>
 

@@ -1,16 +1,23 @@
 import React from 'react';
-import Cover from './components/Cover';
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import IngredientsContainer from './components/IngredientsContainer';
+import Container from './components/Container';
+import Private from './components/Private';
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
 	return (
-		<div >
+		<div>
 			<Header/>
-			<div>
-				<Cover/>
-				<IngredientsContainer/>
-			</div>
+
+			<Routes>
+				<Route path='/' element={<Container/>} />
+				<Route path='/cart' element={<Private/>} />
+				<Route path='/register' element={<Register/>} />
+				<Route path='/login' element={<Login/>} />
+			</Routes>
+			
 		</div>
 	);
 }
