@@ -24,7 +24,7 @@ export function fetchCartItems(){
 
 export function addToCart(params: Object){
     (Http.defaults.headers! as unknown as Record<string, CommonHeaderProperties>).common['auth-token'] = localStorage.getItem('auth-token');
-    return Http.get('/api/cart/add', params);
+    return Http.post('/api/cart/add', params);
 }
 
 export function fetchPreviousOrders(){
@@ -34,5 +34,5 @@ export function fetchPreviousOrders(){
 
 export function placeOrder(params: Object){
     (Http.defaults.headers! as unknown as Record<string, CommonHeaderProperties>).common['auth-token'] = localStorage.getItem('auth-token');
-    return Http.get('/api/order/add', params);
+    return Http.post('/api/order/add', params);
 }

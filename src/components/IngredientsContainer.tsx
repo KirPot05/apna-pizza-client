@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { fetchIngredients } from '../services';
+import { useNavigate } from 'react-router-dom';
+import { addToCart, fetchIngredients } from '../services';
 import Ingredient from './Ingredient'
 
 function IngredientsContainer() {
 
     const [ingredients, setIngredients] = useState([]);
-
+    const [pizzaItems, setPizzaItems] = useState<Array<string>>([]);
+    const navigate = useNavigate();
 
     const getIngredients = async () => {
         const {data} = await fetchIngredients();
@@ -15,9 +16,33 @@ function IngredientsContainer() {
         }
     }
 
+    const addIngredientsToCart = async () => {
+
+        if(localStorage.getItem('auth-token') === null){
+            alert("Please Sign in")
+            navigate('/login');
+        }
+
+        const {data} = await addToCart({
+            pizza: pizzaItems
+        });
+        if(data.success){
+            navigate("/cart");
+        }
+    }
+
     useEffect(() => {
         getIngredients();
-    }, [])
+    }, []);
+
+
+    const addPizzaItem = (item: string) => {
+        setPizzaItems(state => [...state, item])
+    }
+
+    const removePizzaItem = (item: string) => {
+        setPizzaItems(state => state.filter((a) => a !== item));
+    }
 
     return (
         <div className='m-5'>
@@ -31,16 +56,19 @@ function IngredientsContainer() {
                         description={description}
                         imgUrl={img_url}
                         price={price} 
+                        addPizzaItem={addPizzaItem}
+                        removePizzaItem={removePizzaItem}
                     />)
                 })}
             </div>
 
             <div className='m-1 text-center'>
-                <Link to="/cart">
-                    <button className='mr-12 bg-gradient-to-r from-amber-700 via-red-700 to-orange-400  transition-all text-white font-semibold py-4 px-32 rounded-md shadow-md active:scale-95'> 
-                        <span className='text-2xl'> Finalize Pizza  </span>
-                    </button>
-                </Link>
+                <button 
+                    className='mr-12 bg-gradient-to-r from-amber-700 via-red-700 to-orange-400  transition-all text-white font-semibold py-4 px-32 rounded-md shadow-md active:scale-95'
+                    onClick={addIngredientsToCart}
+                > 
+                    <span className='text-2xl'> Finalize Pizza  </span>
+                </button>
             </div>
         </div>
     )
