@@ -11,7 +11,6 @@ function Orders() {
 
 		if(data.success){
 			setOrders(data.response);
-			console.log(data.response);
 		}
 	}
 
@@ -31,7 +30,7 @@ function Orders() {
 			
 			<div className='mt-5 w-[95%] mx-auto flex flex-wrap gap-12 items-center justify-center'>
 				{orders.map(({id, payment_method, createdAt, ingredients_used, amount}, idx) => (
-					<div key={id} className="bg-white w-96 rounded-md shadow-md"	>
+					<div key={id} className="bg-white w-96 h-[27rem] rounded-md shadow-md"	>
 						<h2 className='text-2xl text-center my-4'>Order {idx+1} </h2>
 						<div className='flex justify-center'>
 							<img 

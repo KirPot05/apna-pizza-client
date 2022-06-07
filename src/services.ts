@@ -9,7 +9,7 @@ export function login(params: Object){
 }
 
 export function register(params: Object){
-    return Http.post('api/auth/register', params);   
+    return Http.post('api/auth/create', params);   
 }
 
 export function fetchIngredients(){
